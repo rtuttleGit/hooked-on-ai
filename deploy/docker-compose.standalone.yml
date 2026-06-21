@@ -1,0 +1,24 @@
+# Standalone edge Caddy — use ONLY if joinhookedonai.com DNS points at a
+# second public IP on this server (no conflict with zuri-caddy on :80/:443).
+#
+# Usage:
+#   export HOOKED_ON_AI_IP=YOUR_SECOND_IP
+#   docker compose -f docker-compose.standalone.yml up -d
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: hooked-on-ai-caddy
+    restart: unless-stopped
+    ports:
+      - "${HOOKED_ON_AI_IP}:80:80"
+      - "${HOOKED_ON_AI_IP}:443:443"
+    volumes:
+      - ./Caddyfile.docker:/etc/caddy/Caddyfile:ro
+      - /opt/hooked-on-ai/dist:/srv/hooked-on-ai:ro
+      - hooked-on-ai-caddy-data:/data
+      - hooked-on-ai-caddy-config:/config
+
+volumes:
+  hooked-on-ai-caddy-data:
+  hooked-on-ai-caddy-config:

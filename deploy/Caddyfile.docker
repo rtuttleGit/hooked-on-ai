@@ -1,0 +1,10 @@
+www.joinhookedonai.com {
+	redir https://joinhookedonai.com{uri} permanent
+}
+
+joinhookedonai.com {
+	root * /srv/hooked-on-ai
+	encode gzip zstd
+	file_server
+	try_files {path} /index.html
+}

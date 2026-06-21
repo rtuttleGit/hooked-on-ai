@@ -1,0 +1,12 @@
+# Internal static server — no public ports. Edge Caddy (zuri-caddy) routes
+# joinhookedonai.com here via reverse_proxy (see setup-isolated.sh).
+services:
+  web:
+    image: caddy:2-alpine
+    container_name: hooked-on-ai-web
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile.internal:/etc/caddy/Caddyfile:ro
+      - /opt/hooked-on-ai/dist:/srv/hooked-on-ai:ro
+    expose:
+      - "80"

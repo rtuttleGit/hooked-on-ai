@@ -1,0 +1,11 @@
+# Append ONLY to the zuri-caddy config volume — not the content-creator git repo.
+# joinhookedonai.com traffic never hits {$APP_DOMAIN} handlers.
+
+www.joinhookedonai.com {
+	redir https://joinhookedonai.com{uri} permanent
+}
+
+joinhookedonai.com {
+	encode gzip zstd
+	reverse_proxy hooked-on-ai-web:80
+}

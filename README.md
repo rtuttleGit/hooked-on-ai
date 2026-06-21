@@ -24,7 +24,22 @@ One-time server setup:
 cd /opt/hooked-on-ai
 corepack enable && corepack prepare pnpm@9.15.9 --activate
 cp .env.production.example .env.production   # set VITE_WAITLIST_ENDPOINT
-sudo bash deploy/setup-caddy.sh              # requires import sites/*.caddy in /etc/caddy/Caddyfile
+bash deploy/deploy.sh
+
+# Isolated from content-creator / zuri-caddy (same server IP):
+bash deploy/setup-isolated.sh sidecar
+```
+
+This starts `hooked-on-ai-web` (internal only) and adds a `joinhookedonai.com`
+block to the zuri-caddy config **volume** — it does not change
+`content-creator-backend` git. Zuri’s `{$APP_DOMAIN}` routes are untouched.
+
+**Fully separate edge** (optional): assign a second public IP on Hetzner, point
+DNS at it, then:
+
+```bash
+export HOOKED_ON_AI_IP=your.second.ip
+bash deploy/setup-isolated.sh standalone
 ```
 
 After each pull:
