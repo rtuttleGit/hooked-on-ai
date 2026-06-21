@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 734 156" width="734" height="156">
+  
+  <g transform="translate(0 0) scale(1.9500)">
+    <line x1="10" y1="16" x2="31" y2="16" stroke="#FFA838" stroke-width="1.8" stroke-linecap="round"></line>
+    <circle cx="10" cy="16" r="2.4" fill="#FFA838"></circle>
+    <circle cx="40" cy="16" r="9" fill="none" stroke="#6B7370" stroke-width="1.4" opacity="0.7"></circle>
+    <circle cx="40" cy="16" r="5" fill="none" stroke="#F2EDE0" stroke-width="3"></circle>
+    <circle cx="40" cy="16" r="1.8" fill="#2DE091"></circle>
+    <path d="M40 21 L40 44" stroke="#F2EDE0" stroke-width="6" stroke-linecap="round"></path>
+    <path d="M40 44 A 14 14 0 1 1 26 44" fill="none" stroke="#F2EDE0" stroke-width="6" stroke-linecap="round"></path>
+    <path d="M26 44 L21 38" stroke="#2DE091" stroke-width="6" stroke-linecap="round"></path>
+  </g>
+  <g transform="translate(182 0)">
+    <text x="8.00" y="71.36" fill="#F2EDE0" font-family="Space Grotesk" font-weight="500" font-size="64" letter-spacing="8.96" style="text-transform:uppercase">HOOKED ON</text>
+    <rect x="454.66" y="8.00" width="88.70" height="81.92" fill="#2DE091"></rect>
+    <text x="468.74" y="61.38" fill="#08120E" font-family="Space Grotesk" font-weight="500" font-size="64" letter-spacing="3.84" style="text-transform:uppercase">AI</text>
+    <rect x="8" y="107.92" width="80" height="4" fill="#2DE091"></rect>
+    <text x="8" y="147.92" fill="#6B7370" font-family="Inter" font-weight="500" font-size="22">Engineers Build the Future</text>
+  </g>
+</svg>

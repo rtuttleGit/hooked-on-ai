@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme {
+  --color-hull-black: #08120e;
+  --color-coolant-deep: #143830;
+  --color-reactor-green: #2de091;
+  --color-mid-green: #5ba67e;
+  --color-hot-steel: #6b7370;
+  --color-warning-amber: #ffa838;
+  --color-cream: #f2ede0;
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: var(--color-hull-black);
+  background-image:
+    radial-gradient(
+      ellipse 90% 50% at 50% -10%,
+      rgba(45, 224, 145, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 10%,
+      rgba(255, 168, 56, 0.05),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 0% 100%,
+      rgba(20, 56, 48, 0.5),
+      transparent 60%
+    );
+  background-attachment: fixed;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-reactor-green) 30%, transparent);
+}
+
+/* ---------- Futuristic surface primitives ---------- */
+
+/* Engineering blueprint grid */
+.bg-tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(45, 224, 145, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(45, 224, 145, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Soft reactor glow used sparingly behind focal points */
+.glow-reactor {
+  background: radial-gradient(
+    closest-side,
+    rgba(45, 224, 145, 0.18),
+    rgba(45, 224, 145, 0.05) 60%,
+    transparent 100%
+  );
+}
+
+.glow-amber {
+  background: radial-gradient(
+    closest-side,
+    rgba(255, 168, 56, 0.14),
+    transparent 100%
+  );
+}
+
+/* Fade the grid out toward edges so it feels like depth, not wallpaper */
+.mask-radial-fade {
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 30%, transparent 75%);
+}
+
+/* Depth surfaces (flat rule lifted) */
+.surface-card {
+  background-image: linear-gradient(
+    160deg,
+    rgba(20, 56, 48, 0.45),
+    rgba(8, 18, 14, 0.6)
+  );
+  box-shadow:
+    0 1px 0 rgba(242, 237, 224, 0.04) inset,
+    0 24px 60px -40px rgba(0, 0, 0, 0.8);
+}
+
+.surface-glass {
+  background: rgba(20, 56, 48, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.shadow-glow-green {
+  box-shadow: 0 20px 70px -34px rgba(45, 224, 145, 0.55);
+}
+
+.text-gradient-green {
+  background: linear-gradient(
+    120deg,
+    var(--color-cream) 0%,
+    var(--color-reactor-green) 60%,
+    var(--color-mid-green) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hairline conic border for premium cards */
+.card-glow-border {
+  position: relative;
+}
+.card-glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    140deg,
+    rgba(45, 224, 145, 0.4),
+    rgba(242, 237, 224, 0.08) 40%,
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* Scanning beam */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(2400%);
+    opacity: 0;
+  }
+}
+.animate-scan {
+  animation: scan 7s ease-in-out infinite;
+}
+
+/* Slow pulse for glows */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 6s ease-in-out infinite;
+}
+
+/* Blinking cursor for kinetic type */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.animate-blink {
+  animation: blink 1.1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-scan,
+  .animate-pulse-glow,
+  .animate-blink {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
