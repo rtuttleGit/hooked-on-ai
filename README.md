@@ -16,6 +16,29 @@ pnpm build
 pnpm preview
 ```
 
+## Production deploy (Caddy on `/opt/hooked-on-ai`)
+
+One-time server setup:
+
+```bash
+cd /opt/hooked-on-ai
+corepack enable && corepack prepare pnpm@9.15.9 --activate
+cp .env.production.example .env.production   # set VITE_WAITLIST_ENDPOINT
+sudo bash deploy/setup-caddy.sh              # requires import sites/*.caddy in /etc/caddy/Caddyfile
+```
+
+After each pull:
+
+```bash
+cd /opt/hooked-on-ai
+git pull
+bash deploy/deploy.sh
+```
+
+Or manually: `pnpm install && pnpm build`, then `sudo systemctl reload caddy`.
+
+DNS: `joinhookedonai.com` A record → server IP. Caddy provisions HTTPS automatically.
+
 ## Waitlist integration
 
 The email form works out of the box in demo mode (shows success without persisting). To collect emails, set a backend endpoint:
